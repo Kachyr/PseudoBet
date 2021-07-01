@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Red Hat Text";
+  src: url(assets/fonts/RedHatText-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(assets/fonts/Roboto-Regular.ttf);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  background-color: unset;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+}
