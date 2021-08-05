@@ -1,7 +1,28 @@
 .main-container {
-  max-width: 80%;
-  padding: 0;
-  margin: 10px auto;
+  color: #ffffff;
+  margin-top: 61px;
   min-width: 400px;
-  font-family: "Roboto";
+  font-family: Roboto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  background-color: #240b18;
+  gap: 4px;
+}
+
+.betting-interface {
+  gap: 4px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.info-container {
+  gap: 4px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.history-container {
+  gap: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
