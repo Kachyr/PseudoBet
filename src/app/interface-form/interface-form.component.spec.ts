@@ -11,9 +11,8 @@ describe('InterfaceFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InterfaceFormComponent ]
-    })
-    .compileComponents();
+      declarations: [InterfaceFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

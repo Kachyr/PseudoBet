@@ -1,7 +1,7 @@
-import { InterfaceFormComponent } from './interface-form/interface-form.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InterfaceFormModule } from './interface-form/interface-form.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,11 +14,10 @@ import { TimerComponent } from './timer/timer.component';
     AppComponent,
     HeaderComponent,
     HistoryComponent,
-    InterfaceFormComponent,
     TimerComponent,
     ChartComponent,
   ],
-  imports: [BrowserModule, ReactiveFormsModule],
+  imports: [BrowserModule, ReactiveFormsModule, InterfaceFormModule],
   providers: [],
   bootstrap: [AppComponent],
 })
