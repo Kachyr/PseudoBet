@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { InterfaceFormModule } from './interface-form/interface-form.module';
 
 import { AppComponent } from './app.component';
@@ -17,7 +17,7 @@ import { TimerComponent } from './timer/timer.component';
     TimerComponent,
     ChartComponent,
   ],
-  imports: [BrowserModule, ReactiveFormsModule, InterfaceFormModule],
+  imports: [BrowserModule, InterfaceFormModule],
   providers: [],
   bootstrap: [AppComponent],
 })
