@@ -1,5 +1,7 @@
+import { team1, team2 } from './../mocks/teams-mock/teams-mock';
 import { Component, OnInit } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Team } from '../shared/team-radio-switch/team-radio-switch.model';
 
 @Component({
   selector: 'app-interface-form',
@@ -10,6 +12,9 @@ export class InterfaceFormComponent implements OnInit {
   betForm!: FormGroup;
   stock: number = 300;
   minBet: number = 10;
+  // mocked teams
+  team1: Team = team1;
+  team2: Team = team2;
 
   constructor() {}
 

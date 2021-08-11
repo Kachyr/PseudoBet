@@ -1,5 +1,9 @@
 <div class="form-body">
   <form [formGroup]="betForm" (ngSubmit)="onSubmit(betForm)">
+    <app-team-radio-switch
+      [team1]="team1"
+      [team2]="team2"
+    ></app-team-radio-switch>
     <app-money-input formControlName="amount"></app-money-input>
   </form>
 </div>
