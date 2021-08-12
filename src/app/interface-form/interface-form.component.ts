@@ -20,7 +20,7 @@ export class InterfaceFormComponent implements OnInit {
 
   ngOnInit() {
     this.betForm = new FormGroup({
-      team: new FormControl(null, Validators.required),
+      teamId: new FormControl(null, Validators.required),
       amount: new FormControl(0, [
         Validators.required,
         Validators.max(this.stock),
