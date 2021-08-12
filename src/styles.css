@@ -1,6 +1,22 @@
 @font-face {
-  font-family: "Roboto";
+  font-family: 'Roboto';
   src: url(assets/fonts/Roboto-Regular.ttf);
+}
+
+:root {
+  /* colors gamma */
+  --text-color: #ffffff;
+  --primary: #ffe600;
+  --extra: #7e7c90;
+  --background: #2c1b24;
+  --second-background: #240b18;
+  --success: #40a421;
+  /* border radius */
+  --main-border-radius: 4px;
+  /* font parameters */
+  --font-header-size: 24px;
+  --font-header-weight: 500;
+  --font-caption: 14px;
 }
 
 * {
