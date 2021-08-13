@@ -19,8 +19,6 @@ export class MoneyInputComponent implements ControlValueAccessor {
   onChange: any = (_: any) => {};
   onTouched: any = (_: any) => {};
 
-  constructor() {}
-
   increment(): void {
     this.amountMoney = this.amountMoney + 10;
   }

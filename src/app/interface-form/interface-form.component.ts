@@ -19,8 +19,6 @@ export class InterfaceFormComponent {
     ]),
   });
 
-  constructor() {}
-
   onSubmit(values: FormGroup) {
     console.log(values);
   }
