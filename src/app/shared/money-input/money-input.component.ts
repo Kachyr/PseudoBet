@@ -20,12 +20,14 @@ export class MoneyInputComponent implements ControlValueAccessor {
   onTouched: any = (_: any) => {};
 
   increment(): void {
-    this.amountMoney = this.amountMoney + 10;
+    this.amountMoney += 10;
   }
 
   decrement(): void {
-    if (this.amountMoney <= 0) return;
-    this.amountMoney = this.amountMoney - 10;
+    if (this.amountMoney <= 0) {
+      return;
+    }
+    this.amountMoney -= 10;
   }
 
   get amount(): number {
@@ -33,7 +35,9 @@ export class MoneyInputComponent implements ControlValueAccessor {
   }
 
   set amount(value: number) {
-    if (value < 0) this.amountMoney = 0;
+    if (value < 0) {
+      this.amountMoney = 0;
+    }
     this.amountMoney = value;
     this.onChange(this.amount);
   }
