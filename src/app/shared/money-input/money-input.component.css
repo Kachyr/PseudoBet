@@ -1,0 +1,36 @@
+input {
+  text-align: center;
+  background: var(--text-color);
+  border: 1px solid var(--second-background);
+  box-sizing: border-box;
+  border-radius: var(--main-border-radius);
+  width: 124px;
+  height: 58px;
+  font-weight: var(--font-header-weight);
+  font-size: var(--font-header-size);
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  display: none;
+}
+
+input[type='number']::-moz-outer-spin-button,
+input[type='number']::-moz-inner-spin-button {
+  display: none;
+}
+
+button {
+  background: var(--extra);
+  width: 44px;
+  height: 34px;
+  font-size: 18px;
+}
+
+.minus {
+  border-radius: var(--main-border-radius) 0 0 var(--main-border-radius);
+}
+
+.plus {
+  border-radius: 0 var(--main-border-radius) var(--main-border-radius) 0;
+}

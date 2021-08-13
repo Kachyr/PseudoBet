@@ -2,20 +2,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { InterfaceFormComponent } from './interface-form.component';
+import { MoneyInputComponent } from './money-input.component';
 
-describe('InterfaceFormComponent', () => {
-  let component: InterfaceFormComponent;
-  let fixture: ComponentFixture<InterfaceFormComponent>;
+describe('MoneyInputComponent', () => {
+  let component: MoneyInputComponent;
+  let fixture: ComponentFixture<MoneyInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [InterfaceFormComponent],
+      declarations: [MoneyInputComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InterfaceFormComponent);
+    fixture = TestBed.createComponent(MoneyInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
