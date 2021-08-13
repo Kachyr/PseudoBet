@@ -5,6 +5,5 @@
   padding: 16px;
   width: 341px;
   height: 416px;
-  /* Background */
-  background: #2c1b24;
+  background: var(--background);
 }
