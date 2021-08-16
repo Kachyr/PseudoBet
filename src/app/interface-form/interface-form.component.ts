@@ -18,4 +18,8 @@ export class InterfaceFormComponent {
       Validators.max(this.userDeposit),
     ]),
   });
+
+  onSubmit(form: FormGroup) {
+    console.log(form);
+  }
 }

@@ -1,4 +1,5 @@
 .form-body {
+  gap: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
