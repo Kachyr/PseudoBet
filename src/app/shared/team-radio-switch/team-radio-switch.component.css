@@ -1,0 +1,41 @@
+.team-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+img {
+  width: var(--img-size, 54px);
+  height: var(--img-size, 54px);
+  cursor: pointer;
+}
+
+.input-name {
+  cursor: pointer;
+  margin: auto;
+  margin-left: 4px;
+}
+
+.unchecked {
+  opacity: 0.5;
+}
+
+.vs {
+  margin: auto;
+}
