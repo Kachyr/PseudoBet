@@ -8,17 +8,14 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint --fix",
-    "eslint": "eslint --fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged --relative"
-    }
+    "eslint": "eslint --fix",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,ts}": [
       "eslint --fix"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "private": true,
   "dependencies": {

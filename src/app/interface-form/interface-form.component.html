@@ -1,6 +1,11 @@
 <div class="form-body">
   <form [formGroup]="betForm">
     <app-deposit-amount [deposit]="userDeposit"></app-deposit-amount>
+    <app-team-radio-switch
+      [team1]="team1"
+      [team2]="team2"
+      formControlName="teamId"
+    ></app-team-radio-switch>
     <app-money-input formControlName="amount"></app-money-input>
   </form>
 </div>

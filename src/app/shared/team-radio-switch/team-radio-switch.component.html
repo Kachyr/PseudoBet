@@ -1,0 +1,25 @@
+<div class="team-body">
+  <label for="team1" [ngClass]="{ unchecked: refInput2.checked }">
+    <input
+      id="team1"
+      type="radio"
+      [value]="team1.id"
+      [(ngModel)]="valueId"
+      #refInput1
+    />
+    <img [src]="team1.iconUrl" [alt]="team1.name" />
+    <div class="input-name">{{ team1.name }}</div>
+  </label>
+  <div class="vs">vs</div>
+  <label for="team2" [ngClass]="{ unchecked: refInput1.checked }">
+    <input
+      id="team2"
+      type="radio"
+      [value]="team2.id"
+      [(ngModel)]="valueId"
+      #refInput2
+    />
+    <img [src]="team2.iconUrl" [alt]="team2.name" />
+    <div class="input-name">{{ team2.name }}</div>
+  </label>
+</div>
