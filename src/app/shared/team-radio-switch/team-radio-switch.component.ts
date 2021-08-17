@@ -1,6 +1,6 @@
-import { Component, Input, forwardRef, ElementRef } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Team } from './team-radio-switch.model';
+import { TeamI } from './team-radio-switch.model';
 
 @Component({
   selector: 'app-team-radio-switch',
@@ -15,24 +15,22 @@ import { Team } from './team-radio-switch.model';
   ],
 })
 export class TeamRadioSwitchComponent implements ControlValueAccessor {
-  @Input() team1!: Team;
-  @Input() team2!: Team;
+  @Input() team1!: TeamI;
+  @Input() team2!: TeamI;
 
   onChange: any = () => {};
   onTouched: any = () => {};
 
-  private teamId: number = 0;
+  private teamId = 0;
 
-  public get valueId(): number {
+  get valueId(): number {
     return this.teamId;
   }
 
-  public set valueId(value: number) {
+  set valueId(value: number) {
     this.teamId = value;
     this.onChange(value);
   }
-
-  constructor() {}
 
   writeValue(value: any): void {
     this.valueId = value;

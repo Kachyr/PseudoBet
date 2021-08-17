@@ -1,6 +1,7 @@
 .team-body {
-  vertical-align: middle;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 label {

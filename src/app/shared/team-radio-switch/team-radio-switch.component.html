@@ -1,5 +1,5 @@
 <div class="team-body">
-  <label for="team1" [ngClass]="refInput2.checked ? 'unchecked' : ''">
+  <label for="team1" [ngClass]="{ unchecked: refInput2.checked }">
     <input
       id="team1"
       type="radio"
@@ -11,7 +11,7 @@
     <div class="input-name">{{ team1.name }}</div>
   </label>
   <div class="vs">vs</div>
-  <label for="team2" [ngClass]="refInput1.checked ? 'unchecked' : ''">
+  <label for="team2" [ngClass]="{ unchecked: refInput1.checked }">
     <input
       id="team2"
       type="radio"

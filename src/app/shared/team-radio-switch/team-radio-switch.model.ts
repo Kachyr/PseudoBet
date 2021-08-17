@@ -1,7 +1,5 @@
-export class Team {
-  constructor(
-    readonly id: number,
-    readonly name: string,
-    readonly iconUrl: string,
-  ) {}
+export interface TeamI {
+  id: number;
+  name: string;
+  iconUrl: string;
 }
