@@ -1,3 +1,4 @@
+import { DepositAmountComponent } from './deposit-amount/deposit-amount.component';
 import { MoneyInputComponent } from './../shared/money-input/money-input.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,7 +6,11 @@ import { InterfaceFormComponent } from './interface-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [InterfaceFormComponent, MoneyInputComponent],
+  declarations: [
+    InterfaceFormComponent,
+    MoneyInputComponent,
+    DepositAmountComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [InterfaceFormComponent],
 })
