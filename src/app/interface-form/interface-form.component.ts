@@ -16,7 +16,7 @@ export class InterfaceFormComponent {
   team2: TeamI = team2;
 
   betForm = new FormGroup({
-    team: new FormControl(null, Validators.required),
+    teamId: new FormControl(null, Validators.required),
     amount: new FormControl(null, [
       Validators.required,
       Validators.min(this.minBet),
