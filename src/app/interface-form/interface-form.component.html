@@ -1,7 +1,7 @@
 <div class="form-body">
-  <form [formGroup]="betForm" (ngSubmit)="onSubmit($event)">
+  <form [formGroup]="betForm" (ngSubmit)="onSubmit()">
     <app-money-input formControlName="amount"></app-money-input>
     <app-coefficient [coefficient]="2"></app-coefficient>
-    <app-bet-button [isDisabled]="!betForm.valid"></app-bet-button>
+    <app-bet-button [isDisabled]="betForm.invalid"></app-bet-button>
   </form>
 </div>

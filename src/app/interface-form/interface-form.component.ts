@@ -19,7 +19,7 @@ export class InterfaceFormComponent {
     ]),
   });
 
-  onSubmit(form: FormGroup) {
-    console.log(form);
+  onSubmit() {
+    console.log(this.betForm);
   }
 }
