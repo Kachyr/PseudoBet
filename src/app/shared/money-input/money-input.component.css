@@ -1,3 +1,11 @@
+.input-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+
 input {
   text-align: center;
   background: var(--text-color);
@@ -19,7 +27,7 @@ input[type='number']::-moz-outer-spin-button,
 input[type='number']::-moz-inner-spin-button {
   display: none;
 }
- 
+
 button {
   background: var(--extra);
   width: 44px;

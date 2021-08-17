@@ -1,0 +1,13 @@
+.deposit-body {
+  height: 54px;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: var(--main-border-radius);
+  font-size: var(--font-header-size);
+  font-weight: var(--font-header-weight);
+  background-color: rgba(124, 140, 144, 0.24);
+}
