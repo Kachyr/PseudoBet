@@ -1,3 +1,11 @@
+.input-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+
 input {
   text-align: center;
   background: var(--text-color);

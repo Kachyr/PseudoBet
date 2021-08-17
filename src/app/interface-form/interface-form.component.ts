@@ -23,4 +23,8 @@ export class InterfaceFormComponent {
       Validators.max(this.userDeposit),
     ]),
   });
+
+  onSubmit(): void {
+    console.log(this.betForm);
+  }
 }
