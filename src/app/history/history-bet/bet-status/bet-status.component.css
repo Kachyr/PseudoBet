@@ -1,0 +1,9 @@
+.bet-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.img {
+  width: 16px;
+}

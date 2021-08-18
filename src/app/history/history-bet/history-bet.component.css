@@ -1,7 +1,7 @@
 .history-container {
   min-height: 120px;
 
-  background-color: #2c1b24;
+  background-color: var(--background);
 }
 .history-title {
   display: flex;
