@@ -1,4 +1,4 @@
-import { Team } from '../../shared/team-radio-switch/team-radio-switch.model';
+import { Team } from '../../shared/models/team.model';
 
 export const team1: Team = {
   id: 111,

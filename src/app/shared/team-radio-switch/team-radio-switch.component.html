@@ -7,8 +7,11 @@
       [(ngModel)]="valueId"
       #refInput1
     />
-    <img [src]="team1.iconUrl" [alt]="team1.name" />
-    <div class="input-name">{{ team1.name }}</div>
+    <app-team-logo
+      [name]="team1.name"
+      [iconUrl]="team1.iconUrl"
+      [isUnchecked]="refInput2.checked"
+    ></app-team-logo>
   </label>
   <div class="vs">vs</div>
   <label for="team2" [ngClass]="{ unchecked: refInput1.checked }">
@@ -19,7 +22,10 @@
       [(ngModel)]="valueId"
       #refInput2
     />
-    <img [src]="team2.iconUrl" [alt]="team2.name" />
-    <div class="input-name">{{ team2.name }}</div>
+    <app-team-logo
+      [name]="team2.name"
+      [iconUrl]="team2.iconUrl"
+      [isUnchecked]="refInput1.checked"
+    ></app-team-logo>
   </label>
 </div>
