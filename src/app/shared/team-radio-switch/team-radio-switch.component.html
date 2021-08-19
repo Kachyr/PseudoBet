@@ -1,31 +1,19 @@
 <div class="team-body">
-  <label for="team1" [ngClass]="{ unchecked: refInput2.checked }">
-    <input
-      id="team1"
-      type="radio"
-      [value]="team1.id"
-      [(ngModel)]="valueId"
-      #refInput1
-    />
+  <label for="team1">
+    <input id="team1" type="radio" [value]="team1.id" [(ngModel)]="valueId" />
     <app-team-logo
       [name]="team1.name"
       [iconUrl]="team1.iconUrl"
-      [isUnchecked]="refInput2.checked"
+      [unchecked]="team1.id !== valueId"
     ></app-team-logo>
   </label>
   <div class="vs">vs</div>
-  <label for="team2" [ngClass]="{ unchecked: refInput1.checked }">
-    <input
-      id="team2"
-      type="radio"
-      [value]="team2.id"
-      [(ngModel)]="valueId"
-      #refInput2
-    />
+  <label for="team2">
+    <input id="team2" type="radio" [value]="team2.id" [(ngModel)]="valueId" />
     <app-team-logo
       [name]="team2.name"
       [iconUrl]="team2.iconUrl"
-      [isUnchecked]="refInput1.checked"
+      [unchecked]="team2.id !== valueId"
     ></app-team-logo>
   </label>
 </div>

@@ -9,5 +9,5 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TeamLogoComponent {
   @Input() name!: string;
   @Input() iconUrl!: string;
-  @Input() isUnchecked = false;
+  @Input() unchecked = false;
 }

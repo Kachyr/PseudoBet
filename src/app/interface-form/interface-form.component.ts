@@ -17,7 +17,7 @@ export class InterfaceFormComponent {
 
   betForm = new FormGroup({
     teamId: new FormControl(null, Validators.required),
-    amount: new FormControl(null, [
+    amountMoney: new FormControl(null, [
       Validators.required,
       Validators.min(this.minBet),
       Validators.max(this.userDeposit),
