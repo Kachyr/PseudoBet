@@ -1,6 +1,6 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Team as Team } from './team-radio-switch.model';
+import { Team } from './../models/team.model';
 
 @Component({
   selector: 'app-team-radio-switch',

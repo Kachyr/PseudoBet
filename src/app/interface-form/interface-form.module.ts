@@ -1,3 +1,4 @@
+import { TeamLogoComponent } from './../shared/team-logo/team-logo.component';
 import { CoefficientComponent } from './coefficient/coefficient.component';
 import { BetButtonComponent } from './bet-button/bet-button.component';
 import { TeamRadioSwitchComponent } from './../shared/team-radio-switch/team-radio-switch.component';
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BetButtonComponent,
     TeamRadioSwitchComponent,
     DepositAmountComponent,
+    TeamLogoComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [InterfaceFormComponent],
