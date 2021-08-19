@@ -14,20 +14,20 @@ import { Component, forwardRef } from '@angular/core';
   ],
 })
 export class MoneyInputComponent implements ControlValueAccessor {
-  private amountMoney = 0;
+  private amountMoney!: number;
 
   onChange: any = (_: any) => {};
   onTouched: any = (_: any) => {};
 
   increment(): void {
-    this.amountMoney += 10;
+    this.amount += 10;
   }
 
   decrement(): void {
-    if (this.amountMoney <= 0) {
+    if (this.amount <= 0) {
       return;
     }
-    this.amountMoney -= 10;
+    this.amount -= 10;
   }
 
   get amount(): number {
@@ -39,18 +39,18 @@ export class MoneyInputComponent implements ControlValueAccessor {
       this.amountMoney = 0;
     }
     this.amountMoney = value;
-    this.onChange(this.amount);
+    this.onChange(value);
   }
 
   writeValue(value: number): void {
     this.amountMoney = value;
   }
 
-  registerOnChange(func: (_: any) => void): void {
+  registerOnChange(func: any): void {
     this.onChange = func;
   }
 
-  registerOnTouched(func: (_: any) => void): void {
+  registerOnTouched(func: any): void {
     this.onTouched = func;
   }
 }

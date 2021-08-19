@@ -1,0 +1,22 @@
+.logo-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+img {
+  width: var(--img-size, 54px);
+  height: var(--img-size, 54px);
+  cursor: pointer;
+}
+
+.input-name {
+  cursor: pointer;
+  margin: auto;
+  margin-left: 4px;
+}
+
+.unchecked {
+  opacity: 0.5;
+}
