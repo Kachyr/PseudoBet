@@ -1,6 +1,6 @@
 import { iconWin, iconLose, iconInProgress } from './constant-icons';
 import { Component, Input } from '@angular/core';
-import { BetStatus } from './bet-status.model';
+import { BetStatus } from 'src/app/shared/models/bet-status.model';
 
 @Component({
   selector: 'app-bet-status',

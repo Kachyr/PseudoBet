@@ -1,19 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BetStatus } from '../bet-status/bet-status.model';
+import { team1 } from './../../../mocks/teams-mock/teams-mock';
+import { Component, Input } from '@angular/core';
+import { BetStatus } from 'src/app/shared/models/bet-status.model';
 
 @Component({
   selector: 'app-history-bet-item',
   templateUrl: './history-bet-item.component.html',
   styleUrls: ['./history-bet-item.component.css'],
 })
-export class HistoryBetItemComponent implements OnInit {
-  @Input() money!: number;
-
-  status = BetStatus.Win;
-
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.status = BetStatus.Lose;
-    }, 2000);
-  }
+export class HistoryBetItemComponent {
+  @Input() index!: number;
+  @Input() money = 0;
+  @Input() status = BetStatus.Win;
+  @Input() team = team1; //mock
 }

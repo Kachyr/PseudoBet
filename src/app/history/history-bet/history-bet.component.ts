@@ -1,3 +1,4 @@
+import { Bet } from './../../shared/models/bet.model';
 import { Component } from '@angular/core';
 
 @Component({

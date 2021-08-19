@@ -14,7 +14,9 @@ img {
 .input-name {
   cursor: pointer;
   margin: auto;
-  margin-left: 4px;
+  margin-left: 10px;
+  font-size: var(--font-header-size);
+  font-weight: var(--font-header-weight);
 }
 
 .unchecked {

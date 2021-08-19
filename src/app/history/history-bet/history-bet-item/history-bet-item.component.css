@@ -1,0 +1,13 @@
+.history-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.bet-money {
+  text-align: center;
+  font-size: var(--font-header-size);
+  font-weight: var(--font-header-weight);
+}
