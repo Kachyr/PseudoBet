@@ -1,0 +1,23 @@
+[
+  {
+    "firstTeam_id": 111,
+    "secondTeam_id": 112,
+    "timeLeft": 180000,
+    "time": "2021-07-23T18:23:43.511Z",
+    "winner_id": null
+  },
+  {
+    "firstTeam_id": 111,
+    "secondTeam_id": 112,
+    "timeLeft": 0,
+    "time": "2021-07-23T18:15:43.511Z",
+    "winner_id": 111
+  },
+  {
+    "firstTeam_id": 111,
+    "secondTeam_id": 112,
+    "timeLeft": 0,
+    "time": "2021-07-23T18:10:40.511Z",
+    "winner_id": 112
+  }
+]
