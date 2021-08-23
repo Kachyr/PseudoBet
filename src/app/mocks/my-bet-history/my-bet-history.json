@@ -1,26 +1,29 @@
 [
   {
-    "bet_id": 1,
-    "favorite_id": 111,
-    "match_id": 1,
+    "betId": 1,
+    "userId": 1,
+    "favoriteId": 111,
+    "matchId": 1,
     "amountMoney": 100,
     "time": "2021-07-23T18:23:43.511Z",
-    "status": "In Progress"
+    "status": "IN_PROGRESS"
   },
   {
-    "bet_id": 2,
-    "favorite_id": 112,
-    "match_id": 1,
+    "betId": 2,
+    "userId": 1,
+    "favoriteId": 112,
+    "matchId": 1,
     "amountMoney": 200,
     "time": "2021-07-23T18:15:43.511Z",
-    "status": "Win"
+    "status": "WIN"
   },
   {
-    "bet_id": 3,
-    "favorite_id": 111,
-    "match_id": 1,
+    "betId": 3,
+    "userId": 1,
+    "favoriteId": 111,
+    "matchId": 1,
     "amountMoney": 300,
     "time": "2021-07-23T18:10:40.511Z",
-    "status": "Lose"
+    "status": "LOSE"
   }
 ]
