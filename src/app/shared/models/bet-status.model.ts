@@ -1,5 +1,5 @@
 export enum BetStatus {
-  'Win' = 'Win',
-  'Lose' = 'Lose',
-  'In Progress' = 'In Progress',
+  Win = 'Win',
+  Lose = 'Lose',
+  InProgress = 'In Progress',
 }

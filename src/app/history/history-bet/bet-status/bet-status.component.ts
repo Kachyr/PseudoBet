@@ -1,4 +1,4 @@
-import { iconWin, iconLose, iconInProgress } from './constant-icons';
+import { iconInProgress, iconsPath } from './constant-icons';
 import { Component, Input } from '@angular/core';
 import { BetStatus } from 'src/app/shared/models/bet-status.model';
 
@@ -8,7 +8,7 @@ import { BetStatus } from 'src/app/shared/models/bet-status.model';
   styleUrls: ['./bet-status.component.css'],
 })
 export class BetStatusComponent {
-  private status: BetStatus = BetStatus['In Progress'];
+  private status: BetStatus = BetStatus.InProgress;
   icon = iconInProgress;
 
   @Input()
@@ -17,23 +17,6 @@ export class BetStatusComponent {
   }
   set betStatus(value: BetStatus) {
     this.status = value;
-    this.onIconChange(value);
-  }
-
-  onIconChange(status: BetStatus): void {
-    switch (status) {
-      case BetStatus['Win']:
-        this.icon = iconWin;
-        break;
-      case BetStatus['Lose']:
-        this.icon = iconLose;
-        break;
-      case BetStatus['In Progress']:
-        this.icon = iconInProgress;
-        break;
-      default:
-        this.icon = iconInProgress;
-        break;
-    }
+    this.icon = iconsPath[value] || iconsPath[BetStatus.InProgress];
   }
 }

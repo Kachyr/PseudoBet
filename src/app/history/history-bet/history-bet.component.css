@@ -1,16 +1,29 @@
-.history-container {
+:host {
   min-height: 120px;
-
   background-color: var(--background);
 }
 
 .history-title {
-  display: flex;
-  flex-direction: row;
   align-items: center;
   padding: 16px 16px;
+  font-size: var(--font-header-size);
+  font-weight: var(--font-header-weight);
 }
 
 .history-elements:nth-child(odd) {
   background-color: aliceblue;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.bet-money {
+  text-align: center;
+  font-size: var(--font-header-size);
+  font-weight: var(--font-header-weight);
 }

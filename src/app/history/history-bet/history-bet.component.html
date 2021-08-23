@@ -1,6 +1,8 @@
-<div class="history-container">
-  <div class="history-title"><h3>History of your bets</h3></div>
-  <div class="history-elements">
-    <app-history-bet-item class="item-background"></app-history-bet-item>
+<div class="history-title">History of your bets</div>
+<div class="history-elements">
+  <div class="history-item">
+    <app-bet-status [betStatus]="status">bet status here</app-bet-status>
+    <app-team-logo [iconUrl]="team.iconUrl" [name]="team.name"></app-team-logo>
+    <div class="bet-money">{{ money }} $</div>
   </div>
 </div>
