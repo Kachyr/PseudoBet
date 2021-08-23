@@ -1,7 +1,7 @@
 export interface Game {
-  firstTeam_id: number;
-  secondTeam_id: number;
+  firstTeamId: number;
+  secondTeamId: number;
   timeLeft: number;
   time: string;
-  winner_id: number | null;
+  winnerId: number | null;
 }
