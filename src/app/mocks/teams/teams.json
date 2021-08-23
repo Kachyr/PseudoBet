@@ -1,0 +1,12 @@
+[
+  {
+    "id": 111,
+    "name": "Navi",
+    "iconUrl": "assets/images/teams-img-mock/navi-logo-big.svg"
+  },
+  {
+    "id": 112,
+    "name": "Fnatic",
+    "iconUrl": "assets/images/teams-img-mock/fnatic-logo-big.svg"
+  }
+]
