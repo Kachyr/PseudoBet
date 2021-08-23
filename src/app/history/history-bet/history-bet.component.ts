@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { team1 } from 'src/app/mocks/teams-mock/teams-mock';
 
-import { BetStatus } from 'src/app/shared/models/bet-status.model';
+import { BetStatus } from 'src/app/shared/enums/bet-status.enum';
 @Component({
   selector: 'app-history-bet',
   templateUrl: './history-bet.component.html',

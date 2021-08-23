@@ -1,6 +1,7 @@
 import { iconInProgress, iconsPath } from './constant-icons';
 import { Component, Input } from '@angular/core';
-import { BetStatus } from 'src/app/shared/models/bet-status.model';
+import { BetStatus } from 'src/app/shared/enums/bet-status.enum';
+import { matchStatus } from './constant-match-status';
 
 @Component({
   selector: 'app-bet-status',
@@ -8,15 +9,15 @@ import { BetStatus } from 'src/app/shared/models/bet-status.model';
   styleUrls: ['./bet-status.component.css'],
 })
 export class BetStatusComponent {
-  private status: BetStatus = BetStatus.InProgress;
+  private status = matchStatus[BetStatus.InProgress];
   icon = iconInProgress;
 
   @Input()
-  get betStatus(): BetStatus {
+  get betStatus(): string {
     return this.status;
   }
-  set betStatus(value: BetStatus) {
-    this.status = value;
-    this.icon = iconsPath[value] || iconsPath[BetStatus.InProgress];
+  set betStatus(value: string) {
+    this.status = matchStatus[<BetStatus>value];
+    this.icon = iconsPath[<BetStatus>value] || iconsPath[BetStatus.InProgress];
   }
 }

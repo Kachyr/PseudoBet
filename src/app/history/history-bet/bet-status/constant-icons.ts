@@ -1,4 +1,4 @@
-import { BetStatus } from 'src/app/shared/models/bet-status.model';
+import { BetStatus } from 'src/app/shared/enums/bet-status.enum';
 export const iconWin = 'assets/images/bet-status/win.svg';
 export const iconLose = 'assets/images/bet-status/lose.svg';
 export const iconInProgress = 'assets/images/bet-status/in-progress.svg';
