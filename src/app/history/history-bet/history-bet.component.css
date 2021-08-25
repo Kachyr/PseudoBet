@@ -10,8 +10,21 @@
   font-weight: var(--font-header-weight);
 }
 
-.history-elements:nth-child(odd) {
-  background-color: aliceblue;
+.odd {
+  background-color: var(--extra-with-opacity);
+}
+
+.history-elements {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.table-head {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 0.7fr;
+  padding: 4px 24px;
+  color: var(--extra);
 }
 
 .history-item {

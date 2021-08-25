@@ -1,4 +1,4 @@
-import { team1, team2 } from './../mocks/teams-mock/teams-mock';
+import { team1, team2 } from './../mocks/teams/teams-mock';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Team } from '../shared/models/team.model';
