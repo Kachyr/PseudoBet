@@ -4,9 +4,9 @@ import { Game } from './../shared/models/game.model';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import * as MY_BET_HISTORY from '../mocks/my-bet-history/my-bet-history.json';
-import * as GAMES_HISTORY from '../mocks/games-history/games-history.json';
-import * as TEAMS from '../mocks/teams/teams.json';
+import MY_BET_HISTORY from '../mocks/my-bet-history/my-bet-history.json';
+import GAMES_HISTORY from '../mocks/games-history/games-history.json';
+import TEAMS from '../mocks/teams/teams.json';
 
 @Injectable({
   providedIn: 'root',
