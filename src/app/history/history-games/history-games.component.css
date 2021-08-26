@@ -4,8 +4,7 @@
 }
 
 .history-title {
-  align-items: center;
-  padding: 16px 16px;
+  padding: 16px;
   font-size: var(--font-header-size);
   font-weight: var(--font-header-weight);
 }
