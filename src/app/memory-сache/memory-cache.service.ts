@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class MemoryCacheService {
-  teams = new BehaviorSubject<Team[]>([]);
+  private teams = new BehaviorSubject<Team[]>([]);
 
   constructor(private repo: DataRepository) {
     this.refreshCache();
