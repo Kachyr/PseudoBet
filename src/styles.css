@@ -8,6 +8,7 @@
   --text-color: #ffffff;
   --primary: #ffe600;
   --extra: #7e7c90;
+  --extra-with-opacity: rgba(126, 124, 144, 0.25);
   --background: #2c1b24;
   --second-background: #240b18;
   --success: #40a421;

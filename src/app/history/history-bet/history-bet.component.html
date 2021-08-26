@@ -1,0 +1,15 @@
+<div class="history-title">History of your bets</div>
+<div class="table-head">
+  <span>Result</span>
+  <span>Your favorite</span>
+  <span>Bet</span>
+</div>
+<div
+  class="history-item"
+  [ngClass]="{ odd: i % 2 === 0 }"
+  *ngFor="let item of historyList; let i = index"
+>
+  <app-bet-status [betStatus]="item.status">bet status here</app-bet-status>
+  <app-team-logo [iconUrl]="team.iconUrl" [name]="team.name"></app-team-logo>
+  <div class="bet-money">{{ item.amountMoney }} $</div>
+</div>
