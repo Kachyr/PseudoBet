@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HistoryGamesComponent, HistoryGamesComponent],
-  imports: [CommonModule, HistoryBetModule],
+  imports: [CommonModule, HistoryBetModule, SharedModule],
   exports: [HistoryBetModule, HistoryGamesComponent],
 })
 export class HistoryModule {}

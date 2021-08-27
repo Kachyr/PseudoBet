@@ -9,9 +9,38 @@
   font-weight: var(--font-header-weight);
 }
 
+.history-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding-left: 16px;
+  padding-right: 16px;
+  align-items: center;
+}
+
 .table-head {
   display: grid;
-  grid-template-columns: 2fr 1.3fr 0.7fr;
+  grid-template-columns: 3fr 1fr;
   padding: 4px 24px;
   color: var(--extra);
+}
+
+.versus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 30%;
+}
+
+.date {
+  font-size: var(--font-caption);
+  text-align: left;
+}
+
+.odd {
+  background-color: var(--extra-with-opacity);
+}
+
+.vs {
+  font-size: var(--font-caption);
+  font-weight: var(--font-header-weight);
 }
