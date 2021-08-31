@@ -1,4 +1,4 @@
-<div class="logo-body" [ngClass]="{ unchecked: unchecked }">
-  <img [src]="iconUrl" [alt]="name" />
-  <div class="input-name">{{ name }}</div>
+<div class="logo-body" [ngClass]="{ unchecked: unchecked, hide: !team }">
+  <img [src]="team?.iconUrl" [alt]="team?.name" />
+  <div class="input-name">{{ team?.name }}</div>
 </div>

@@ -18,6 +18,9 @@ img {
   font-size: var(--font-header-size);
   font-weight: var(--font-header-weight);
 }
+.hide {
+  display: none;
+}
 
 .unchecked {
   opacity: 0.5;
