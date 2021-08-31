@@ -14,7 +14,7 @@ export class MemoryCacheService {
     this.refreshCache();
   }
 
-  refreshCache() {
+  refreshCache(): void {
     this.repo.getTeams().subscribe((data) => {
       this.teams.next(data);
     });

@@ -1,4 +1,29 @@
-.timer-container {
-  background-color: #2c1b24;
-  height: 200px;
+:host {
+  background-color: var(--background);
+  max-width: 342px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+}
+
+.timer-label {
+  padding: 8px 16px;
+  background: var(--extra);
+  opacity: 0.75;
+  border-radius: 8px;
+  color: var(--text-color);
+}
+
+.timer {
+  color: var(--primary);
+  font-weight: var(--font-header-weight);
+  font-size: 46px;
+  line-height: 54px;
+}
+
+.instructions {
+  color: var(--extra);
+  text-align: center;
 }
