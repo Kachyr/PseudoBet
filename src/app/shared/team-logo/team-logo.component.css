@@ -6,9 +6,9 @@
 }
 
 img {
-  width: var(--img-size, 54px);
-  height: var(--img-size, 54px);
   cursor: pointer;
+  max-width: 100%;
+  max-height: auto;
 }
 
 .input-name {
@@ -17,9 +17,6 @@ img {
   margin-left: 10px;
   font-size: var(--font-header-size);
   font-weight: var(--font-header-weight);
-}
-.hide {
-  display: none;
 }
 
 .unchecked {
