@@ -10,6 +10,6 @@
   *ngFor="let item of historyList; let i = index"
 >
   <app-bet-status [betStatus]="item.status"></app-bet-status>
-  <app-team-logo [iconUrl]="team.iconUrl" [name]="team.name"></app-team-logo>
+  <app-team-logo [teamId]="item.favoriteId"></app-team-logo>
   <div class="bet-money">{{ item.amountMoney }} $</div>
 </div>
