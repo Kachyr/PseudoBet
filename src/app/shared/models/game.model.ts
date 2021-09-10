@@ -1,7 +1,7 @@
 export interface Game {
   firstTeamId: number;
   secondTeamId: number;
-  timeLeft: number;
-  time: string;
+  duration: number;
+  startAt: Date;
   winnerId: number | null;
 }

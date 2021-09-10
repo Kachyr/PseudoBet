@@ -17,6 +17,7 @@
 }
 
 .timer {
+  text-align: center;
   color: var(--primary);
   font-weight: var(--font-header-weight);
   font-size: 46px;

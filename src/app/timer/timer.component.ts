@@ -1,4 +1,7 @@
+import { GameManagerService } from './../game-manager/game-manager.service';
+import { TimerService } from './../shared/timer/timer.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-timer',
@@ -6,33 +9,24 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent implements OnInit, OnDestroy {
-  time = 10;
-  display = '0:00';
-  interval!: ReturnType<typeof setInterval>;
+  timer = 0;
+  timerSub!: Subscription;
+  gameWillStartSoon = false;
 
-  startTimer(): void {
-    this.interval = setInterval(() => {
-      if (this.time > 0) {
-        this.time--;
-      } else {
-        clearInterval(this.interval);
-      }
-      this.display = this.transform(this.time);
-    }, 1000);
-  }
-
-  transform(time: number): string {
-    const minutes = Math.round((time % 3600) / 60);
-    const seconds = Math.round(time % 60).toString();
-
-    return `${minutes}:${seconds.padStart(2, '0')}`;
-  }
+  constructor(
+    private timerService: TimerService,
+    private gameManager: GameManagerService,
+  ) {}
 
   ngOnInit(): void {
-    this.startTimer();
+    this.gameWillStartSoon = this.gameManager.gameWillStartSoon;
+    this.gameManager.refreshCurrentGameInfo();
+    this.timerSub = this.timerService.runningTimer.subscribe((time) => {
+      this.timer = time.left;
+    });
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.interval);
+    this.timerSub.unsubscribe();
   }
 }

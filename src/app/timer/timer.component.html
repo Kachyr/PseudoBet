@@ -1,6 +1,9 @@
 <div class="timer-label">Time until end of match</div>
 <div class="timer">
-  {{ display }}
+  <ng-container *ngIf="!gameWillStartSoon; else message">{{
+    timer | timerFormat
+  }}</ng-container>
+  <ng-template #message>This game will start soon</ng-template>
 </div>
 <div class="instructions">
   New match every 5 minutes Graphic shows winner of the current game You can do
