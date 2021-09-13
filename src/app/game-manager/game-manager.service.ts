@@ -1,6 +1,6 @@
 import { TimerService } from './../shared/timer/timer.service';
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { DataRepository } from '../repository/repository.service';
 import { Game } from '../shared/models/game.model';
 
@@ -9,7 +9,7 @@ import { Game } from '../shared/models/game.model';
 })
 export class GameManagerService {
   private currentGame = new ReplaySubject<Game>();
-  private isGameStarted = new ReplaySubject<boolean>();
+  private isGameStarted = new BehaviorSubject<boolean>(false);
   private timerTimeout!: ReturnType<typeof setTimeout>;
 
   constructor(
@@ -32,17 +32,19 @@ export class GameManagerService {
       const timePassed = now - game.startAt.getTime();
       const timeToWait = game.startAt.getTime() - now;
 
-      this.isGameStarted.next(game.startAt.getTime() < now);
-
       clearTimeout(this.timerTimeout);
 
       if (game.startAt.getTime() < now) {
         this.timerService.startTimer(game.duration - timePassed);
-      } else {
+        this.isGameStarted.next(true);
+      } else if (game.startAt.getTime() > now) {
+        this.isGameStarted.next(false);
         this.timerTimeout = setTimeout(() => {
           this.timerService.startTimer(game.duration);
-          this.isGameStarted.next(game.startAt.getTime() > now);
+          this.isGameStarted.next(true);
         }, timeToWait);
+      } else {
+        this.isGameStarted.next(false);
       }
     });
   }
