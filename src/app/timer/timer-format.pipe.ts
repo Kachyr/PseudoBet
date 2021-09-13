@@ -4,6 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'timerFormat',
 })
 export class TimerFormat implements PipeTransform {
+  /**
+   * @param value The value is expected to be passed in seconds..
+   */
   transform(value: number): string {
     const minutes = Math.floor(value / 60);
     const seconds = (value - minutes * 60).toString();

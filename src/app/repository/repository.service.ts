@@ -33,15 +33,22 @@ export class DataRepository {
     console.info('setBet with value', amount);
     return of(null).pipe(delay(500));
   }
+
   getCurrentGame(): Observable<Game> {
-    // returns the game that started 20 seconds ago
-    const now = Date.now();
-    const twentySecondsAgo = now - 20000;
+    // returns the game
     return of(GAMES_HISTORY[0]).pipe(
       delay(500),
       map((game) => {
-        return { ...game, startAt: new Date(twentySecondsAgo) };
+        return { ...game, startAt: this.generateDate() };
       }),
     );
+  }
+
+  private generateDate(): Date {
+    // Randomly returns date with 10 sec difference
+    const now = Date.now();
+    const randomInteger = Math.round(Math.random() * 10);
+    const seconds = randomInteger > 5 ? 10000 : -10000;
+    return new Date(now - seconds);
   }
 }

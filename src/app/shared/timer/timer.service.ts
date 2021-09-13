@@ -8,6 +8,7 @@ import { takeWhile } from 'rxjs/operators';
 export class TimerService {
   private time = new ReplaySubject<{ passed: number; left: number }>();
   private currentTimer!: Subscription;
+  readonly oneSecond = 1000;
 
   get runningTimer(): Observable<{ passed: number; left: number }> {
     return this.time;
@@ -15,7 +16,7 @@ export class TimerService {
 
   startTimer(duration: number): void {
     // Stop previous timer
-    const seconds = Math.round(duration / 1000);
+    const seconds = Math.round(duration / this.oneSecond);
     this.currentTimer?.unsubscribe();
     // Start new
     this.currentTimer = this.initTimer(seconds).subscribe((i) =>
@@ -24,6 +25,6 @@ export class TimerService {
   }
 
   private initTimer(duration: number): Observable<number> {
-    return interval(1000).pipe(takeWhile((x) => x <= duration));
+    return interval(this.oneSecond).pipe(takeWhile((x) => x <= duration));
   }
 }

@@ -9,9 +9,8 @@ import { Game } from '../shared/models/game.model';
 })
 export class GameManagerService {
   private currentGame = new ReplaySubject<Game>();
-  timerTimeout!: ReturnType<typeof setTimeout>;
-  gameWillStartSoon = false;
-  gameIsStarted = false;
+  private isGameStarted = new ReplaySubject<boolean>();
+  private timerTimeout!: ReturnType<typeof setTimeout>;
 
   constructor(
     private repo: DataRepository,
@@ -22,6 +21,10 @@ export class GameManagerService {
     return this.currentGame.asObservable();
   }
 
+  get gameStatus(): Observable<boolean> {
+    return this.isGameStarted.asObservable();
+  }
+
   refreshCurrentGameInfo(): void {
     // start the timer with calculated values;
     this.repo.getCurrentGame().subscribe((game) => {
@@ -29,16 +32,16 @@ export class GameManagerService {
       const timePassed = now - game.startAt.getTime();
       const timeToWait = game.startAt.getTime() - now;
 
-      this.gameIsStarted = game.startAt.getTime() < now;
-      this.gameWillStartSoon = game.startAt.getTime() > now;
+      this.isGameStarted.next(game.startAt.getTime() < now);
 
       clearTimeout(this.timerTimeout);
 
-      if (this.gameIsStarted) {
+      if (game.startAt.getTime() < now) {
         this.timerService.startTimer(game.duration - timePassed);
-      } else if (this.gameWillStartSoon) {
+      } else {
         this.timerTimeout = setTimeout(() => {
           this.timerService.startTimer(game.duration);
+          this.isGameStarted.next(game.startAt.getTime() > now);
         }, timeToWait);
       }
     });
