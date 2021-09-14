@@ -19,6 +19,12 @@
         "curly": 1,
         "prettier/prettier": ["error", { "endOfLine": "auto" }],
         "import/prefer-default-export": "off",
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowExpressions": true
+          }
+        ],
         "@angular-eslint/directive-selector": [
           "error",
           {

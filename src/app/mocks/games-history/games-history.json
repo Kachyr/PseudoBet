@@ -2,22 +2,22 @@
   {
     "firstTeamId": 111,
     "secondTeamId": 112,
-    "timeLeft": 180000,
-    "time": "2021-07-23T18:23:43.511Z",
+    "duration": 300000,
+    "startAt": "2021-09-10T08:21:11.816Z",
     "winnerId": null
   },
   {
     "firstTeamId": 111,
     "secondTeamId": 112,
-    "timeLeft": 0,
-    "time": "2021-07-23T18:15:43.511Z",
+    "duration": 300000,
+    "startAt": "2021-07-23T18:15:43.511Z",
     "winnerId": 111
   },
   {
     "firstTeamId": 111,
     "secondTeamId": 112,
-    "timeLeft": 0,
-    "time": "2021-07-23T18:10:40.511Z",
+    "duration": 300000,
+    "startAt": "2021-07-23T18:10:40.511Z",
     "winnerId": 112
   }
 ]

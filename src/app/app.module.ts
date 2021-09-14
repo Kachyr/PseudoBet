@@ -4,12 +4,13 @@ import { InterfaceFormModule } from './interface-form/interface-form.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ChartComponent } from './chart/chart.component';
-import { TimerComponent } from './timer/timer.component';
+
 import { HistoryModule } from './history/history.module';
+import { TimerModule } from './timer/timer.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, TimerComponent, ChartComponent],
-  imports: [BrowserModule, InterfaceFormModule, HistoryModule],
+  declarations: [AppComponent, HeaderComponent, ChartComponent],
+  imports: [BrowserModule, InterfaceFormModule, HistoryModule, TimerModule],
   providers: [],
   bootstrap: [AppComponent],
 })

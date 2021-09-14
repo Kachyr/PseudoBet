@@ -1,1 +1,17 @@
-<div class="timer-container">timer works!</div>
+<div class="timer-label">Time and Status</div>
+<div class="timer">
+  <ng-container [ngSwitch]="gameStatus | async">
+    <div *ngSwitchCase="statusEnum.startedGame">
+      {{ (timeData | async)!.left | timerFormat }}
+    </div>
+    <div *ngSwitchCase="statusEnum.waitingForNextGame">
+      This game will start soon
+    </div>
+    <div *ngSwitchCase="statusEnum.finishedGame">Game is Over</div>
+    <div *ngSwitchDefault>No planned Games</div>
+  </ng-container>
+</div>
+<div class="instructions">
+  New match every 5 minutes Graphic shows winner of the current game You can do
+  only 1 bets
+</div>

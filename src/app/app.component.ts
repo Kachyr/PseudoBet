@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { GameManagerService } from './game-manager/game-manager.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'PseudoBet';
+export class AppComponent implements OnInit {
+  constructor(private gameManager: GameManagerService) {}
+
+  ngOnInit(): void {
+    this.gameManager.refreshCurrentGameInfo();
+  }
 }
