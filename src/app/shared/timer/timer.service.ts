@@ -1,4 +1,10 @@
-import { interval, Observable, ReplaySubject, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  interval,
+  Observable,
+  ReplaySubject,
+  Subscription,
+} from 'rxjs';
 import { Injectable } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
 
@@ -6,7 +12,11 @@ import { takeWhile } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class TimerService {
-  private time = new ReplaySubject<{ passed: number; left: number }>();
+  private time = new BehaviorSubject<{ passed: number; left: number }>({
+    passed: 0,
+    left: 300,
+  });
+  private isTimerExpired = new BehaviorSubject<boolean>(false);
   private currentTimer!: Subscription;
   readonly oneSecond = 1000;
 
@@ -14,14 +24,25 @@ export class TimerService {
     return this.time;
   }
 
+  get expiringOfTimer(): Observable<boolean> {
+    return this.isTimerExpired.asObservable();
+  }
+
   startTimer(duration: number): void {
     // Stop previous timer
     const seconds = Math.round(duration / this.oneSecond);
     this.currentTimer?.unsubscribe();
+    // Clear expire status
+    this.isTimerExpired.next(false);
     // Start new
-    this.currentTimer = this.initTimer(seconds).subscribe((i) =>
-      this.time.next({ passed: i, left: seconds - i }),
-    );
+    this.currentTimer = this.initTimer(seconds).subscribe({
+      next: (i) => {
+        this.time.next({ passed: i, left: seconds - i });
+      },
+      complete: () => {
+        this.isTimerExpired.next(true);
+      },
+    });
   }
 
   private initTimer(duration: number): Observable<number> {

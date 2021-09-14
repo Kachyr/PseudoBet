@@ -1,3 +1,4 @@
+import { GameStatus } from '../shared/enums/game-status.enum';
 import { GameManagerService } from './../game-manager/game-manager.service';
 import { TimerService } from './../shared/timer/timer.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class TimerComponent implements OnInit {
   timeData?: Observable<{ passed: number; left: number }>;
-  isGameStarted?: Observable<boolean>;
+  gameStatus?: Observable<GameStatus>;
+  statusEnum = GameStatus;
 
   constructor(
     private timerService: TimerService,
@@ -18,8 +20,7 @@ export class TimerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.gameManager.refreshCurrentGameInfo();
-    this.isGameStarted = this.gameManager.gameStatus;
+    this.gameStatus = this.gameManager.gameStatus;
     this.timeData = this.timerService.runningTimer;
   }
 }
