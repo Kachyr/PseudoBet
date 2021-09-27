@@ -14,7 +14,7 @@ import TEAMS from '../mocks/teams/teams.json';
 })
 export class DataRepository {
   /**
-   * Method will return array with data for char,
+   * Method will return array with data for chart,
    * number of elements depends depends on difference last request time and current moment
    * @param lastRequestDateTime time of last request in millisecond format
    * @returns Observable with array of chart data objects
@@ -23,14 +23,14 @@ export class DataRepository {
     const dataArr: ChartData[] = [];
     const now = Date.now();
 
-    const timeDifference = lastRequestDateTime
-      ? Math.round((now - lastRequestDateTime) / 1000)
-      : 5;
-    //generate objects for chart
-    for (let i = 0; i < timeDifference; i++) {
+    const timeDifferenceInSeconds = Math.round(
+      (now - lastRequestDateTime) / 1000,
+    );
+
+    //generate objects for chart for each seconds of time difference
+    for (let i = 0; i < timeDifferenceInSeconds; i++) {
       dataArr.push(this.generateChartObject(i));
     }
-    //set last request time
 
     return of(dataArr).pipe(delay(500));
   }
@@ -76,9 +76,9 @@ export class DataRepository {
   }
 
   private generateChartObject(increment: number): ChartData {
-    const time = Date.now() + increment;
+    const incrementedTime = Date.now() + increment * 1000;
     const randomValue = Math.round(Math.random() * 10);
 
-    return { time: new Date(time), value: randomValue };
+    return { time: new Date(incrementedTime), value: randomValue };
   }
 }

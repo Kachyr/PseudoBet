@@ -1,34 +1,47 @@
 import { TimerService } from './../shared/timer/timer.service';
-import { Component, OnInit } from '@angular/core';
-import { repeat } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataRepository } from '../repository/repository.service';
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { GameChartData } from '../shared/models/chart.model';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
-export class ChartComponent implements OnInit {
-  timerData?: {
-    passed: number;
-    left: number;
-  };
-  lastReq!: number;
+export class ChartComponent implements OnInit, OnDestroy {
+  timerSub!: Subscription;
+  lastRequestTime!: number;
+  chartData?: GameChartData[];
+  stepOfChart = 5;
+
   constructor(
     private repo: DataRepository,
     private timerService: TimerService,
   ) {}
 
   ngOnInit(): void {
-    // TODO: implement visualization of data
-    this.timerService.runningTimer.subscribe((timerData) => {
-      if (timerData.passed % 5 === 0 && timerData.passed > 0) {
-        this.repo.getChartData(this.lastReq).subscribe((data) => {
-          console.log(data);
-        });
-        this.lastReq = Date.now();
-        console.log(timerData.passed);
-      }
-    });
+    this.lastRequestTime = Date.now();
+
+    this.timerSub = this.timerService.runningTimer
+      .pipe(
+        map(
+          ({ left, passed }) =>
+            passed % this.stepOfChart === 0 && passed >= 0 && left >= 0,
+        ),
+      )
+      .subscribe((timerIsRunning) => {
+        if (timerIsRunning) {
+          this.repo.getChartData(this.lastRequestTime).subscribe((data) => {
+            this.chartData = data;
+          });
+          this.lastRequestTime = Date.now();
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.timerSub.unsubscribe();
   }
 }
