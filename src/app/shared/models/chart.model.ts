@@ -1,4 +1,4 @@
-export interface ChartData {
-  time: Date;
-  value: number;
+export interface GameChartData {
+  x: Date;
+  y: number;
 }

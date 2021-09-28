@@ -1,8 +1,8 @@
 import { TimerService } from './../shared/timer/timer.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataRepository } from '../repository/repository.service';
-import { map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { EMPTY, Subscription } from 'rxjs';
 import { GameChartData } from '../shared/models/chart.model';
 
 @Component({
@@ -13,8 +13,8 @@ import { GameChartData } from '../shared/models/chart.model';
 export class ChartComponent implements OnInit, OnDestroy {
   timerSub!: Subscription;
   lastRequestTime!: number;
-  chartData?: GameChartData[];
   stepOfChart = 5;
+  data!: any;
 
   constructor(
     private repo: DataRepository,
@@ -30,14 +30,13 @@ export class ChartComponent implements OnInit, OnDestroy {
           ({ left, passed }) =>
             passed % this.stepOfChart === 0 && passed >= 0 && left >= 0,
         ),
+        switchMap((timerIsRunning) =>
+          timerIsRunning ? this.repo.getChartData(this.lastRequestTime) : EMPTY,
+        ),
       )
-      .subscribe((timerIsRunning) => {
-        if (timerIsRunning) {
-          this.repo.getChartData(this.lastRequestTime).subscribe((data) => {
-            this.chartData = data;
-          });
-          this.lastRequestTime = Date.now();
-        }
+      .subscribe((data) => {
+        this.lastRequestTime = Date.now();
+        this.data = data;
       });
   }
 

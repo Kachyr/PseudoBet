@@ -1,4 +1,4 @@
-import { ChartData } from './../shared/models/chart.model';
+import { GameChartData } from './../shared/models/chart.model';
 import { Team } from './../shared/models/team.model';
 import { Bet } from './../shared/models/bet.model';
 import { Game } from './../shared/models/game.model';
@@ -19,8 +19,8 @@ export class DataRepository {
    * @param lastRequestDateTime time of last request in millisecond format
    * @returns Observable with array of chart data objects
    */
-  getChartData(lastRequestDateTime: number): Observable<ChartData[]> {
-    const dataArr: ChartData[] = [];
+  getChartData(lastRequestDateTime: number): Observable<GameChartData[]> {
+    const dataArr: GameChartData[] = [];
     const now = Date.now();
 
     const timeDifferenceInSeconds = Math.round(
@@ -75,10 +75,10 @@ export class DataRepository {
     return new Date(now - seconds);
   }
 
-  private generateChartObject(increment: number): ChartData {
+  private generateChartObject(increment: number): GameChartData {
     const incrementedTime = Date.now() + increment * 1000;
     const randomValue = Math.round(Math.random() * 10);
 
-    return { time: new Date(incrementedTime), value: randomValue };
+    return { x: new Date(incrementedTime), y: randomValue };
   }
 }
