@@ -1,3 +1,4 @@
+import { GameChartData } from './../shared/models/chart.model';
 import { Team } from './../shared/models/team.model';
 import { Bet } from './../shared/models/bet.model';
 import { Game } from './../shared/models/game.model';
@@ -12,6 +13,28 @@ import TEAMS from '../mocks/teams/teams.json';
   providedIn: 'root',
 })
 export class DataRepository {
+  /**
+   * Method will return array with data for chart,
+   * number of elements depends depends on difference last request time and current moment
+   * @param lastRequestDateTime time of last request in millisecond format
+   * @returns Observable with array of chart data objects
+   */
+  getChartData(lastRequestDateTime: number): Observable<GameChartData[]> {
+    const dataArr: GameChartData[] = [];
+    const now = Date.now();
+
+    const timeDifferenceInSeconds = Math.round(
+      (now - lastRequestDateTime) / 1000,
+    );
+
+    //generate objects for chart for each seconds of time difference
+    for (let i = 0; i < timeDifferenceInSeconds; i++) {
+      dataArr.push(this.generateChartObject(lastRequestDateTime, i));
+    }
+
+    return of(dataArr).pipe(delay(500));
+  }
+
   getTeams(): Observable<Team[]> {
     return of(TEAMS).pipe(delay(1000));
   }
@@ -50,5 +73,15 @@ export class DataRepository {
     const randomInteger = Math.round(Math.random() * 10);
     const seconds = randomInteger > 5 ? 10000 : -10000;
     return new Date(now - seconds);
+  }
+
+  private generateChartObject(
+    lastRequestTime: number,
+    increment: number,
+  ): GameChartData {
+    const incrementedTime = lastRequestTime + increment * 1000;
+    const randomValue = Math.round(Math.random() * 10);
+
+    return { t: new Date(incrementedTime), y: randomValue };
   }
 }
