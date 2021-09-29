@@ -29,7 +29,7 @@ export class DataRepository {
 
     //generate objects for chart for each seconds of time difference
     for (let i = 0; i < timeDifferenceInSeconds; i++) {
-      dataArr.push(this.generateChartObject(i));
+      dataArr.push(this.generateChartObject(lastRequestDateTime, i));
     }
 
     return of(dataArr).pipe(delay(500));
@@ -75,10 +75,13 @@ export class DataRepository {
     return new Date(now - seconds);
   }
 
-  private generateChartObject(increment: number): GameChartData {
-    const incrementedTime = Date.now() + increment * 1000;
+  private generateChartObject(
+    lastRequestTime: number,
+    increment: number,
+  ): GameChartData {
+    const incrementedTime = lastRequestTime + increment * 1000;
     const randomValue = Math.round(Math.random() * 10);
 
-    return { x: new Date(incrementedTime), y: randomValue };
+    return { t: new Date(incrementedTime), y: randomValue };
   }
 }

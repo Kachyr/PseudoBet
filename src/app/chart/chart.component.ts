@@ -11,10 +11,14 @@ import { GameChartData } from '../shared/models/chart.model';
   styleUrls: ['./chart.component.css'],
 })
 export class ChartComponent implements OnInit, OnDestroy {
-  timerSub!: Subscription;
-  lastRequestTime!: number;
-  stepOfChart = 5;
-  data!: any;
+  /**
+   * Value that determines how often request a new chart data
+   * @type {number}
+   */
+  private readonly stepOfChart = 5;
+  private timerSub!: Subscription;
+  private lastRequestTime!: number;
+  private data!: GameChartData[];
 
   constructor(
     private repo: DataRepository,
@@ -36,7 +40,7 @@ export class ChartComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => {
         this.lastRequestTime = Date.now();
-        this.data = data;
+        this.data.push(...data);
       });
   }
 
