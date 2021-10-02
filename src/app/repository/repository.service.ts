@@ -14,6 +14,10 @@ import TEAMS from '../mocks/teams/teams.json';
 })
 export class DataRepository {
   /**
+   * Last value of chart for chartData generation
+   */
+  lastChartValue = 0;
+  /**
    * Method will return array with data for chart,
    * number of elements depends depends on difference last request time and current moment
    * @param lastRequestDateTime time of last request in millisecond format
@@ -80,8 +84,17 @@ export class DataRepository {
     increment: number,
   ): GameChartData {
     const incrementedTime = lastRequestTime + increment * 1000;
-    const randomValue = Math.round(Math.random() * 10);
-
+    const randomValue = this.shouldIncreaseOrDecrease(this.lastChartValue);
+    this.lastChartValue = randomValue;
     return { t: new Date(incrementedTime), y: randomValue };
+  }
+
+  private shouldIncreaseOrDecrease(previousValue: number): number {
+    const randomChance = Math.round(Math.random());
+    if (randomChance === 1 && previousValue !== 1) {
+      return previousValue + 0.1;
+    } else {
+      return previousValue + -0.1;
+    }
   }
 }
