@@ -32,7 +32,9 @@ export class DataRepository {
       dataArr.push(this.generateChartObject(lastRequestDateTime, i));
     }
 
-    return of(dataArr).pipe(delay(500));
+    // TODO: in real app, there will be delay, but for demo it is ignored
+    // return of(dataArr).pipe(delay(500));
+    return of(dataArr);
   }
 
   getTeams(): Observable<Team[]> {
