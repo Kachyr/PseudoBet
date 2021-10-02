@@ -14,6 +14,10 @@ import TEAMS from '../mocks/teams/teams.json';
 })
 export class DataRepository {
   /**
+   * Last value of chart for chartData generation
+   */
+  lastChartValue = 0;
+  /**
    * Method will return array with data for chart,
    * number of elements depends depends on difference last request time and current moment
    * @param lastRequestDateTime time of last request in millisecond format
@@ -58,6 +62,7 @@ export class DataRepository {
   }
 
   getCurrentGame(): Observable<Game> {
+    this.lastChartValue = 0;
     // returns the game
     return of(GAMES_HISTORY[0]).pipe(
       delay(500),
@@ -80,8 +85,14 @@ export class DataRepository {
     increment: number,
   ): GameChartData {
     const incrementedTime = lastRequestTime + increment * 1000;
-    const randomValue = Math.round(Math.random() * 10);
-
+    const randomValue = this.shouldIncreaseOrDecrease(this.lastChartValue);
+    this.lastChartValue = randomValue;
     return { t: new Date(incrementedTime), y: randomValue };
+  }
+
+  private shouldIncreaseOrDecrease(previousValue: number): number {
+    const vector = Math.random() > 0.5 ? 1 : -1;
+    const result = previousValue + vector * (Math.random() / 4);
+    return Math.max(-1, Math.min(1, result));
   }
 }
