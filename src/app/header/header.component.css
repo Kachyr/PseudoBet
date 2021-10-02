@@ -3,15 +3,12 @@
   flex-direction: row;
   align-items: center;
   padding: 12px 64px;
-
   position: absolute;
   height: 64px;
   left: 0px;
   right: 0px;
   top: 0px;
-
   background: #240b18;
-  border-radius: 0px;
 }
 
 .header-logo {

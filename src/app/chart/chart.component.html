@@ -1,1 +1,11 @@
-<div class="chart-container">chart works!</div>
+<div class="chart-container">
+  <p *ngIf="(dataset[0]?.data?.length ?? 0) === 0">Waiting...</p>
+  <canvas
+    *ngIf="(dataset[0]?.data?.length ?? 0) > 0"
+    baseChart
+    [options]="options"
+    [datasets]="dataset"
+    [chartType]="chartType"
+    id="game-chart"
+  ></canvas>
+</div>

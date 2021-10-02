@@ -16,7 +16,7 @@ export class HistoryBetComponent implements OnInit, OnDestroy {
 
   constructor(private repositoryService: DataRepository) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.historyListSubscription = this.repositoryService
       .getMyHistory()
       .subscribe((list) => {
@@ -24,7 +24,7 @@ export class HistoryBetComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.historyListSubscription.unsubscribe();
   }
 }
