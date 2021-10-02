@@ -1,4 +1,4 @@
 export interface GameChartData {
-  x: Date;
+  t: Date;
   y: number;
 }

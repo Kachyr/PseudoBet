@@ -7,10 +7,17 @@ import { ChartComponent } from './chart/chart.component';
 
 import { HistoryModule } from './history/history.module';
 import { TimerModule } from './timer/timer.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ChartComponent],
-  imports: [BrowserModule, InterfaceFormModule, HistoryModule, TimerModule],
+  imports: [
+    BrowserModule,
+    InterfaceFormModule,
+    HistoryModule,
+    TimerModule,
+    ChartsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
