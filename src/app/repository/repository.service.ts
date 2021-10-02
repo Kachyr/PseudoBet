@@ -62,6 +62,7 @@ export class DataRepository {
   }
 
   getCurrentGame(): Observable<Game> {
+    this.lastChartValue = 0;
     // returns the game
     return of(GAMES_HISTORY[0]).pipe(
       delay(500),
@@ -90,11 +91,7 @@ export class DataRepository {
   }
 
   private shouldIncreaseOrDecrease(previousValue: number): number {
-    const randomChance = Math.round(Math.random());
-    if (randomChance === 1 && previousValue !== 1) {
-      return previousValue + 0.1;
-    } else {
-      return previousValue + -0.1;
-    }
+    const vector = Math.random() > 0.5 ? 1 : -1;
+    return previousValue + vector * (Math.random() / 4);
   }
 }
