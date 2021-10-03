@@ -1,7 +1,23 @@
 <div class="history-title">Games results</div>
 <div class="table-head">
-  <span>Result</span>
-  <span>Your favorite</span>
-  <span>Bet</span>
+  <span>Winner</span>
+  <span>Time</span>
 </div>
-<div class="history-item"></div>
+<h1 class="loader" *ngIf="(gamesList?.length ?? 0) === 0">Waiting...</h1>
+<div
+  class="history-item"
+  [ngClass]="{ odd: i % 2 === 0 }"
+  *ngFor="let game of gamesList; let i = index"
+>
+  <div class="versus">
+    <app-team-logo [teamId]="game.firstTeamId" [size]="'small'"></app-team-logo>
+    <span class="vs">vs</span>
+    <app-team-logo
+      [teamId]="game.secondTeamId"
+      [size]="'small'"
+    ></app-team-logo>
+  </div>
+  <div class="date">
+    {{ game.timeOfEnd | date: "dd LLLL 'at' HH:mm" }}
+  </div>
+</div>

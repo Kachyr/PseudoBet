@@ -3,12 +3,23 @@
   justify-content: center;
   align-items: center;
   padding: 8px;
+  max-height: 60px;
+  max-width: 134px;
 }
 
 img {
   cursor: pointer;
-  max-width: 100%;
-  max-height: auto;
+  object-fit: contain;
+}
+
+.small {
+  height: var(--logo-small);
+  width: var(--logo-small);
+}
+
+.big {
+  height: var(--logo-big);
+  width: var(--logo-big);
 }
 
 .input-name {

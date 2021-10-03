@@ -1,13 +1,11 @@
-<div class="form-body">
-  <form [formGroup]="betForm" (ngSubmit)="onSubmit()">
-    <app-deposit-amount [deposit]="userDeposit"></app-deposit-amount>
-    <app-team-radio-switch
-      [team1]="team1"
-      [team2]="team2"
-      formControlName="teamId"
-    ></app-team-radio-switch>
-    <app-money-input formControlName="amountMoney"></app-money-input>
-    <app-coefficient [coefficient]="2"></app-coefficient>
-    <app-bet-button [isDisabled]="betForm.invalid"></app-bet-button>
-  </form>
-</div>
+<form [formGroup]="betForm" (ngSubmit)="onSubmit()">
+  <app-deposit-amount [deposit]="userDeposit"></app-deposit-amount>
+  <app-team-radio-switch
+    [team1]="team1"
+    [team2]="team2"
+    formControlName="teamId"
+  ></app-team-radio-switch>
+  <app-money-input formControlName="amountMoney"></app-money-input>
+  <app-coefficient [coefficient]="2"></app-coefficient>
+  <app-bet-button [isDisabled]="betForm.invalid"></app-bet-button>
+</form>

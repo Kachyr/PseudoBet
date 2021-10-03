@@ -18,6 +18,9 @@
   --font-header-size: 24px;
   --font-header-weight: 500;
   --font-caption: 14px;
+  /* team-logo sizes */
+  --logo-small: 40px;
+  --logo-big: 60px;
 }
 
 * {
@@ -27,4 +30,9 @@
   outline: none;
   border: none;
   box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--second-background);
 }

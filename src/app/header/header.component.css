@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 13px 64px;
+  padding: 12px 64px;
   position: absolute;
   height: 64px;
   left: 0px;
@@ -17,11 +17,9 @@
   right: 87.36%;
   top: 27.05%;
   bottom: 27.05%;
-
-  /* Font */
   font-family: Roboto;
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--font-header-weight);
   font-size: var(--font-header-size);
   line-height: 28px;
   color: var(--primary);

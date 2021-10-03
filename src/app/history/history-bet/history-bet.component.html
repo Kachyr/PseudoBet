@@ -4,12 +4,13 @@
   <span>Your favorite</span>
   <span>Bet</span>
 </div>
+<h1 class="loader" *ngIf="(historyList?.length ?? 0) === 0">Waiting...</h1>
 <div
   class="history-item"
   [ngClass]="{ odd: i % 2 === 0 }"
   *ngFor="let item of historyList; let i = index"
 >
   <app-bet-status [betStatus]="item.status"></app-bet-status>
-  <app-team-logo [teamId]="item.favoriteId"></app-team-logo>
+  <app-team-logo [teamId]="item.favoriteId" [size]="'small'"></app-team-logo>
   <div class="bet-money">{{ item.amountMoney }} $</div>
 </div>

@@ -12,13 +12,14 @@ import { MemoryCacheService } from 'src/app/memory-сache/memory-cache.service';
 export class TeamLogoComponent implements OnInit, OnDestroy {
   @Input() teamId: number = 111;
   @Input() unchecked = false;
+  @Input() size?: 'small' | 'big';
   team: Team | null = null;
 
   private cacheSubscription!: Subscription;
 
   constructor(private cacheService: MemoryCacheService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.cacheSubscription = this.cacheService
       .getTeamById(this.teamId)
       .pipe(filter((item) => item !== null))
@@ -27,7 +28,7 @@ export class TeamLogoComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.cacheSubscription.unsubscribe();
   }
 }

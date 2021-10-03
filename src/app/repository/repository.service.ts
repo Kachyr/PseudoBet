@@ -52,8 +52,15 @@ export class DataRepository {
   getMyGames(): Observable<Game[]> {
     return of(GAMES_HISTORY).pipe(
       delay(1000),
-      map((games) =>
-        games.map((game) => ({ ...game, startAt: new Date(game.startAt) })),
+      map((listGames) =>
+        listGames.map((game) => {
+          const dateTime = new Date(game.startAt);
+          return {
+            ...game,
+            startAt: dateTime,
+            timeOfEnd: new Date(dateTime.getTime() + game.duration),
+          };
+        }),
       ),
     );
   }

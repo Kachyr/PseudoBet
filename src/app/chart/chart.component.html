@@ -1,5 +1,5 @@
 <div class="chart-container">
-  <p *ngIf="(dataset[0]?.data?.length ?? 0) == 0">Waiting...</p>
+  <p *ngIf="(dataset[0]?.data?.length ?? 0) === 0">Waiting...</p>
   <canvas
     *ngIf="(dataset[0]?.data?.length ?? 0) > 0"
     baseChart

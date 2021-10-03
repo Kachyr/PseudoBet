@@ -3,14 +3,14 @@
   background-color: var(--background);
 }
 
+.loader {
+  padding: 16px;
+}
+
 .history-title {
   padding: 16px;
   font-size: var(--font-header-size);
   font-weight: var(--font-header-weight);
-}
-
-.odd {
-  background-color: var(--extra-with-opacity);
 }
 
 .history-elements {
@@ -38,4 +38,8 @@
   text-align: center;
   font-size: var(--font-header-size);
   font-weight: var(--font-header-weight);
+}
+
+.odd {
+  background-color: var(--extra-with-opacity);
 }
