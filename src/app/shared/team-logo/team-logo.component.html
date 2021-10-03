@@ -1,8 +1,0 @@
-<div *ngIf="team" class="logo-body" [ngClass]="{ unchecked: unchecked }">
-  <img
-    [src]="team?.iconUrl"
-    [alt]="team?.name"
-    [ngClass]="{ small: size === 'small', big: size === 'big' }"
-  />
-  <div class="input-name">{{ team?.name }}</div>
-</div>
