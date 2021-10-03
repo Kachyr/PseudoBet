@@ -4,4 +4,5 @@ export interface Game {
   duration: number;
   startAt: Date;
   winnerId: number | null;
+  timeOfEnd?: Date;
 }
