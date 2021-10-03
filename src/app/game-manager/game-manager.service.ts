@@ -47,7 +47,7 @@ export class GameManagerService {
     this.startGame();
   }
 
-  private startGame() {
+  private startGame(): void {
     this.repo.getCurrentGame().subscribe((game) => {
       this.currentGame.next(game);
       const now = Date.now();
