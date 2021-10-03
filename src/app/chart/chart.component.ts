@@ -93,7 +93,7 @@ export class ChartComponent implements OnInit, OnDestroy {
 
         const gradientFill = context.createLinearGradient(0, height, 0, 0);
         gradientFill.addColorStop(0, 'transparent');
-        gradientFill.addColorStop(0.5, 'transparent');
+        gradientFill.addColorStop(0.4, 'transparent');
         gradientFill.addColorStop(1, '#FFE600');
 
         return gradientFill;
@@ -129,7 +129,7 @@ export class ChartComponent implements OnInit, OnDestroy {
         ),
         tap(() => (this.lastRequestTime = Date.now())),
         mergeAll(),
-        concatMap((txn) => of(txn).pipe(delay(1000))),
+        concatMap((i) => of(i).pipe(delay(1000))),
       )
       .subscribe((data) => {
         this.pushToDataSet(data);

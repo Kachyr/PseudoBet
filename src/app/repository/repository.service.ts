@@ -94,7 +94,7 @@ export class DataRepository {
 
   private shouldIncreaseOrDecrease(previousValue: number): number {
     const vector = Math.random() > 0.5 ? 1 : -1;
-    const result = previousValue + vector * (Math.random() / 4);
+    const result = previousValue + vector * (Math.random() / 30);
     return Math.max(-1, Math.min(1, result));
   }
 }
