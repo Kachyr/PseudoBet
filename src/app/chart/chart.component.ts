@@ -20,7 +20,10 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { DataRepository } from '../repository/repository.service';
+import {
+  DataRepository,
+  generateGameStartDateTime,
+} from '../repository/repository.service';
 import { TimerService } from './../shared/timer/timer.service';
 
 @Component({
@@ -115,8 +118,6 @@ export class ChartComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.lastRequestTime = Date.now();
-
     this.timerSub = this.timerService.runningTimer
       .pipe(
         map(({ left, passed }) => ({
@@ -124,9 +125,25 @@ export class ChartComponent implements OnInit, OnDestroy {
           timerIsRunning: passed > 0 && left > 0,
           isFinished: left == 0,
         })),
-        switchMap(({ timerIsRunning }) =>
-          timerIsRunning ? this.repo.getChartData(this.lastRequestTime) : EMPTY,
-        ),
+        switchMap(({ timerIsRunning }) => {
+          // A bit hacky solution to download data for already passed time
+          if (!this.lastRequestTime) {
+            return this.repo
+              .getChartData(generateGameStartDateTime().getTime())
+              .pipe(
+                tap((data) => {
+                  for (const i of data) {
+                    this.pushToDataSet(i);
+                  }
+                }),
+                tap(() => (this.lastRequestTime = Date.now())),
+                switchMap(() => EMPTY),
+              );
+          }
+          return timerIsRunning
+            ? this.repo.getChartData(this.lastRequestTime)
+            : EMPTY;
+        }),
         tap(() => (this.lastRequestTime = Date.now())),
         mergeAll(),
         concatMap((i) => of(i).pipe(delay(1000))),

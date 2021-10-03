@@ -8,6 +8,10 @@ import { Injectable } from '@angular/core';
 import MY_BET_HISTORY from '../mocks/my-bet-history/my-bet-history.json';
 import GAMES_HISTORY from '../mocks/games-history/games-history.json';
 import TEAMS from '../mocks/teams/teams.json';
+import {
+  EVERY_MINUTE_WHEN_GAME_STARTS,
+  GAME_DURATION_IN_MINUTES,
+} from '../constants';
 
 @Injectable({
   providedIn: 'root',
@@ -69,7 +73,11 @@ export class DataRepository {
     return of(GAMES_HISTORY[0]).pipe(
       delay(500),
       map((game) => {
-        return { ...game, startAt: generateGameStartDateTime() };
+        return {
+          ...game,
+          duration: GAME_DURATION_IN_MINUTES * 60 * 1000,
+          startAt: generateGameStartDateTime(),
+        };
       }),
     );
   }
@@ -98,8 +106,11 @@ export function generateGameStartDateTime(): Date {
   const now = new Date();
 
   let m = now.getMinutes();
-  const mod = m % 10;
-  m = mod < 5 ? m - mod : m + (10 - mod);
+  const mod = m % EVERY_MINUTE_WHEN_GAME_STARTS;
+  m =
+    mod < GAME_DURATION_IN_MINUTES
+      ? m - mod
+      : m + (EVERY_MINUTE_WHEN_GAME_STARTS - mod);
 
   return new Date(
     now.getFullYear(),

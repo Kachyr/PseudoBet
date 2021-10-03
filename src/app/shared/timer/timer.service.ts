@@ -7,6 +7,7 @@ import {
 } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
+import { GAME_DURATION_IN_MINUTES } from 'src/app/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ import { takeWhile } from 'rxjs/operators';
 export class TimerService {
   private time = new BehaviorSubject<{ passed: number; left: number }>({
     passed: 0,
-    left: 300,
+    left: GAME_DURATION_IN_MINUTES * 60,
   });
   private isTimerExpired = new BehaviorSubject<boolean>(false);
   private currentTimer!: Subscription;
