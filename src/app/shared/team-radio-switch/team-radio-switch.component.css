@@ -1,8 +1,9 @@
-.team-body {
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 12px;
+  height: 74px;
 }
 
 label {

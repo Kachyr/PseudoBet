@@ -3,6 +3,10 @@
   background-color: var(--background);
 }
 
+.loader {
+  padding: 16px;
+}
+
 .history-title {
   padding: 16px;
   font-size: var(--font-header-size);

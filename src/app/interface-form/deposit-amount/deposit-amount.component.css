@@ -1,8 +1,7 @@
-.deposit-body {
+:host {
   height: 54px;
   width: 308px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 14px 16px;

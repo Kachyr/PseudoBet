@@ -1,8 +1,12 @@
+import { map } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Game } from 'src/app/shared/models/game.model';
 import { Subscription } from 'rxjs';
 import { DataRepository } from 'src/app/repository/repository.service';
-import { team1 } from 'src/app/mocks/teams/teams-mock';
+
+interface ExtendedGameI extends Game {
+  timeOfEnd: Date;
+}
 
 @Component({
   selector: 'app-history-games',
@@ -11,14 +15,21 @@ import { team1 } from 'src/app/mocks/teams/teams-mock';
 })
 export class HistoryGamesComponent implements OnInit, OnDestroy {
   private gamesSubscription!: Subscription;
-  gamesList: Game[] = [];
-  team = team1; //mock
+  gamesList: ExtendedGameI[] = [];
 
   constructor(private repositoryService: DataRepository) {}
 
   ngOnInit(): void {
     this.gamesSubscription = this.repositoryService
       .getMyGames()
+      .pipe(
+        map((listGames) =>
+          listGames.map((game) => ({
+            ...game,
+            timeOfEnd: new Date(game.startAt.getTime() + game.duration),
+          })),
+        ),
+      )
       .subscribe((games) => {
         this.gamesList = games;
       });
