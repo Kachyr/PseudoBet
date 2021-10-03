@@ -35,6 +35,7 @@ export class GameManagerService {
     });
     // start the timer with calculated values;
     this.repo.getCurrentGame().subscribe((game) => {
+      this.currentGame.next(game);
       const now = Date.now();
       const timePassed = now - game.startAt.getTime();
       const timeToWait = game.startAt.getTime() - now;
