@@ -69,17 +69,9 @@ export class DataRepository {
     return of(GAMES_HISTORY[0]).pipe(
       delay(500),
       map((game) => {
-        return { ...game, startAt: this.generateDate() };
+        return { ...game, startAt: generateGameStartDateTime() };
       }),
     );
-  }
-
-  private generateDate(): Date {
-    // Randomly returns date with 10 sec difference
-    const now = Date.now();
-    const randomInteger = Math.round(Math.random() * 10);
-    const seconds = randomInteger > 5 ? 10000 : -10000;
-    return new Date(now - seconds);
   }
 
   private generateChartObject(
@@ -97,4 +89,24 @@ export class DataRepository {
     const result = previousValue + vector * (Math.random() / 30);
     return Math.max(-1, Math.min(1, result));
   }
+}
+
+/**
+ * Game starts every 10 minute, game lasts 5 minutes
+ */
+export function generateGameStartDateTime(): Date {
+  const now = new Date();
+
+  let m = now.getMinutes();
+  const mod = m % 10;
+  m = mod < 5 ? m - mod : m + (10 - mod);
+
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    now.getHours(),
+    m,
+    0,
+  );
 }
