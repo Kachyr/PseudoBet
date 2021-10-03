@@ -7,20 +7,21 @@ import {
   ChartYAxe,
 } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { EMPTY, from, of, Subscription } from 'rxjs';
+import { EMPTY, of, Subscription } from 'rxjs';
 import {
-  bufferCount,
   concatMap,
-  debounceTime,
   delay,
-  flatMap,
   map,
   mergeAll,
-  mergeMap,
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { DataRepository } from '../repository/repository.service';
+import { GameManagerService } from '../game-manager/game-manager.service';
+import {
+  DataRepository,
+  generateGameStartDateTime,
+} from '../repository/repository.service';
+import { GameStatus } from '../shared/enums/game-status.enum';
 import { TimerService } from './../shared/timer/timer.service';
 
 @Component({
@@ -35,6 +36,7 @@ export class ChartComponent implements OnInit, OnDestroy {
    */
   private readonly stepOfChart = 5;
   private timerSub!: Subscription;
+  private gameStatusSub!: Subscription;
   private lastRequestTime!: number;
 
   // @ViewChild(BaseChartDirective) private chart!: BaseChartDirective;
@@ -93,7 +95,7 @@ export class ChartComponent implements OnInit, OnDestroy {
 
         const gradientFill = context.createLinearGradient(0, height, 0, 0);
         gradientFill.addColorStop(0, 'transparent');
-        gradientFill.addColorStop(0.5, 'transparent');
+        gradientFill.addColorStop(0.4, 'transparent');
         gradientFill.addColorStop(1, '#FFE600');
 
         return gradientFill;
@@ -112,10 +114,18 @@ export class ChartComponent implements OnInit, OnDestroy {
   constructor(
     private repo: DataRepository,
     private timerService: TimerService,
+    private gameManagerService: GameManagerService,
   ) {}
 
   ngOnInit(): void {
-    this.lastRequestTime = Date.now();
+    this.gameStatusSub = this.gameManagerService.gameStatus.subscribe(
+      (status) => {
+        if (status === GameStatus.waitingForNextGame) {
+          // Reset chart when waiting for next game
+          this.dataset[0]!.data! = [];
+        }
+      },
+    );
 
     this.timerSub = this.timerService.runningTimer
       .pipe(
@@ -124,12 +134,28 @@ export class ChartComponent implements OnInit, OnDestroy {
           timerIsRunning: passed > 0 && left > 0,
           isFinished: left == 0,
         })),
-        switchMap(({ timerIsRunning }) =>
-          timerIsRunning ? this.repo.getChartData(this.lastRequestTime) : EMPTY,
-        ),
+        switchMap(({ timerIsRunning }) => {
+          // A bit hacky solution to download data for already passed time
+          if (!this.lastRequestTime) {
+            return this.repo
+              .getChartData(generateGameStartDateTime().getTime())
+              .pipe(
+                tap((data) => {
+                  for (const i of data) {
+                    this.pushToDataSet(i);
+                  }
+                }),
+                tap(() => (this.lastRequestTime = Date.now())),
+                switchMap(() => EMPTY),
+              );
+          }
+          return timerIsRunning
+            ? this.repo.getChartData(this.lastRequestTime)
+            : EMPTY;
+        }),
         tap(() => (this.lastRequestTime = Date.now())),
         mergeAll(),
-        concatMap((txn) => of(txn).pipe(delay(1000))),
+        concatMap((i) => of(i).pipe(delay(1000))),
       )
       .subscribe((data) => {
         this.pushToDataSet(data);
@@ -146,5 +172,6 @@ export class ChartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.timerSub.unsubscribe();
+    this.gameStatusSub.unsubscribe();
   }
 }
