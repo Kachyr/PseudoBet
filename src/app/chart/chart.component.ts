@@ -22,6 +22,8 @@ import {
   generateGameStartDateTime,
 } from '../repository/repository.service';
 import { GameStatus } from '../shared/enums/game-status.enum';
+import { GameChartData } from '../shared/models/chart.model';
+import { Game } from '../shared/models/game.model';
 import { TimerService } from './../shared/timer/timer.service';
 
 @Component({
@@ -37,8 +39,9 @@ export class ChartComponent implements OnInit, OnDestroy {
   private readonly stepOfChart = 5;
   private timerSub!: Subscription;
   private gameStatusSub!: Subscription;
+  private currentGameSub!: Subscription;
   private lastRequestTime!: number;
-
+  private currentGame!: Game;
   // @ViewChild(BaseChartDirective) private chart!: BaseChartDirective;
 
   options: ChartOptions = {
@@ -118,8 +121,23 @@ export class ChartComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.currentGameSub =
+      this.gameManagerService.currentGameObservable.subscribe((game) => {
+        this.currentGame = game;
+      });
     this.gameStatusSub = this.gameManagerService.gameStatus.subscribe(
       (status) => {
+        if (status === GameStatus.finishedGame) {
+          const lastItemValue = this.dataset[0]!.data![
+            this.dataset[0]!.data!.length - 1
+          ] as GameChartData;
+          console.log(lastItemValue);
+
+          this.gameManagerService.determineWinner(
+            this.currentGame,
+            lastItemValue.y,
+          );
+        }
         if (status === GameStatus.waitingForNextGame) {
           // Reset chart when waiting for next game
           this.dataset[0]!.data! = [];
@@ -173,5 +191,6 @@ export class ChartComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.timerSub.unsubscribe();
     this.gameStatusSub.unsubscribe();
+    this.currentGameSub.unsubscribe();
   }
 }

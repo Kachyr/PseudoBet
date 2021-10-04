@@ -70,4 +70,9 @@ export class GameManagerService {
       }
     });
   }
+
+  determineWinner(game: Game, lastChartValue: number): void {
+    const winnerId = lastChartValue > 0 ? game.firstTeamId : game.secondTeamId;
+    this.repo.addGame({ ...game, winnerId });
+  }
 }
