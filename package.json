@@ -18,6 +18,7 @@
     "*.js": "eslint --cache --fix"
   },
   "private": true,
+  "homepage": "https://kachyr.github.io/PseudoBet/",
   "dependencies": {
     "@angular/animations": "^12.1.0",
     "@angular/common": "^12.1.0",
