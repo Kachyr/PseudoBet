@@ -6,10 +6,8 @@
     [value]="team1.id"
     [(ngModel)]="valueId"
   />
-  <app-team-logo
-    [teamId]="team1.id"
-    [unchecked]="refTeam2.checked"
-  ></app-team-logo>
+  <app-team-logo [teamId]="team1.id" [unchecked]="refTeam2.checked">
+  </app-team-logo>
 </label>
 <div class="vs">vs</div>
 <label for="team2">

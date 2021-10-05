@@ -7,6 +7,7 @@ import { delay, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import MY_BET_HISTORY from '../mocks/my-bet-history/my-bet-history.json';
 import GAMES_HISTORY from '../mocks/games-history/games-history.json';
+import CURRENT_GAME from '../mocks/current-game/current-game.json';
 import TEAMS from '../mocks/teams/teams.json';
 import {
   EVERY_MINUTE_WHEN_GAME_STARTS,
@@ -17,10 +18,13 @@ import {
   providedIn: 'root',
 })
 export class DataRepository {
+  private betHistory: Bet[] = MY_BET_HISTORY;
+  private gamesHistory: any = GAMES_HISTORY;
   /**
    * Last value of chart for chartData generation
    */
   lastChartValue = 0;
+
   /**
    * Method will return array with data for chart,
    * number of elements depends depends on difference last request time and current moment
@@ -53,11 +57,16 @@ export class DataRepository {
     return of(MY_BET_HISTORY).pipe(delay(1000));
   }
 
+  addGame(game: Game): void {
+    const parsedStartAt = game.startAt.toJSON();
+    this.gamesHistory.unshift({ ...game, startAt: parsedStartAt });
+  }
+
   getMyGames(): Observable<Game[]> {
-    return of(GAMES_HISTORY).pipe(
+    return of(this.gamesHistory).pipe(
       delay(1000),
       map((listGames) =>
-        listGames.map((game) => {
+        listGames.map((game: Game) => {
           const dateTime = new Date(game.startAt);
           return {
             ...game,
@@ -69,15 +78,20 @@ export class DataRepository {
     );
   }
 
-  setBet(amount: number): Observable<null> {
-    console.info('setBet with value', amount);
+  setBet(betData: Bet): Observable<null> {
+    this.betHistory.unshift(betData);
+    console.info('setBet with value', betData);
     return of(null).pipe(delay(500));
+  }
+
+  getBet(): Observable<Bet> {
+    return of(this.betHistory[0]).pipe(delay(500));
   }
 
   getCurrentGame(): Observable<Game> {
     this.lastChartValue = 0;
     // returns the game
-    return of(GAMES_HISTORY[0]).pipe(
+    return of(CURRENT_GAME).pipe(
       delay(500),
       map((game) => {
         return {

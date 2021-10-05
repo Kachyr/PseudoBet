@@ -10,11 +10,16 @@
   *ngFor="let game of gamesList; let i = index"
 >
   <div class="versus">
-    <app-team-logo [teamId]="game.firstTeamId" [size]="'small'"></app-team-logo>
+    <app-team-logo
+      [teamId]="game.firstTeamId"
+      [size]="'small'"
+      [unchecked]="game.winnerId === game.firstTeamId"
+    ></app-team-logo>
     <span class="vs">vs</span>
     <app-team-logo
       [teamId]="game.secondTeamId"
       [size]="'small'"
+      [unchecked]="game.winnerId === game.secondTeamId"
     ></app-team-logo>
   </div>
   <div class="date">

@@ -1,12 +1,6 @@
 [
   {
-    "firstTeamId": 111,
-    "secondTeamId": 112,
-    "duration": 300000,
-    "startAt": "2021-09-10T08:21:11.816Z",
-    "winnerId": null
-  },
-  {
+    "gameId": 2,
     "firstTeamId": 111,
     "secondTeamId": 112,
     "duration": 300000,
@@ -14,10 +8,11 @@
     "winnerId": 111
   },
   {
+    "gameId": 1,
     "firstTeamId": 111,
     "secondTeamId": 112,
     "duration": 300000,
-    "startAt": "2021-07-23T18:10:40.511Z",
+    "startAt": "2021-07-23T18:20:40.511Z",
     "winnerId": 112
   }
 ]
