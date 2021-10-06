@@ -1,4 +1,4 @@
-.chart-container {
+:host {
   background-color: #2c1b24;
   display: block;
   width: 100%;

@@ -4,21 +4,10 @@
   min-width: 400px;
   font-family: Roboto;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 342px 1fr;
+  grid-template-rows: 400px 1fr;
   background-color: var(--second-background);
   gap: 4px;
-}
-
-.betting-interface {
-  gap: 4px;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-}
-
-.info-container {
-  gap: 4px;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
 }
 
 .history-container {
