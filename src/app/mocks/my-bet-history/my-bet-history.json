@@ -1,14 +1,5 @@
 [
   {
-    "betId": 1,
-    "userId": 1,
-    "favoriteId": 111,
-    "matchId": 1,
-    "amountMoney": 100,
-    "time": "2021-07-23T18:23:43.511Z",
-    "status": "IN_PROGRESS"
-  },
-  {
     "betId": 2,
     "userId": 1,
     "favoriteId": 112,

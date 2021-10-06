@@ -18,6 +18,7 @@ export class GameManagerService {
     GameStatus.waitingForNextGame,
   );
   private timerTimeout!: ReturnType<typeof setTimeout>;
+  private gameCopy!: Game;
 
   constructor(
     private repo: DataRepository,
@@ -36,7 +37,9 @@ export class GameManagerService {
     // subscribing in the expiring of timer
     this.timerService.expiringOfTimer.subscribe((expired) => {
       if (expired) {
+        this.determineWinner();
         this.isGameStarted.next(GameStatus.finishedGame);
+
         // Re-request new game when half time of delay passed
         setTimeout(() => {
           this.startGame();
@@ -50,6 +53,7 @@ export class GameManagerService {
   private startGame(): void {
     this.repo.getCurrentGame().subscribe((game) => {
       this.currentGame.next(game);
+      this.gameCopy = game;
       const now = Date.now();
       const timePassed = now - game.startAt.getTime();
       const timeToWait = game.startAt.getTime() - now;
@@ -71,8 +75,11 @@ export class GameManagerService {
     });
   }
 
-  determineWinner(game: Game, lastChartValue: number): void {
-    const winnerId = lastChartValue > 0 ? game.firstTeamId : game.secondTeamId;
-    this.repo.addGame({ ...game, winnerId });
+  determineWinner(): void {
+    const winnerId =
+      this.repo.repoLastChartValue > 0
+        ? this.gameCopy.firstTeamId
+        : this.gameCopy.secondTeamId;
+    this.repo.addGame({ ...this.gameCopy, winnerId });
   }
 }

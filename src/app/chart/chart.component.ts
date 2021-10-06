@@ -127,17 +127,6 @@ export class ChartComponent implements OnInit, OnDestroy {
       });
     this.gameStatusSub = this.gameManagerService.gameStatus.subscribe(
       (status) => {
-        if (status === GameStatus.finishedGame) {
-          const lastItemValue = this.dataset[0]!.data![
-            this.dataset[0]!.data!.length - 1
-          ] as GameChartData;
-          console.log(lastItemValue);
-
-          this.gameManagerService.determineWinner(
-            this.currentGame,
-            lastItemValue.y,
-          );
-        }
         if (status === GameStatus.waitingForNextGame) {
           // Reset chart when waiting for next game
           this.dataset[0]!.data! = [];
