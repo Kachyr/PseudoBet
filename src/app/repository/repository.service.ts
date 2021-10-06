@@ -79,9 +79,6 @@ export class DataRepository {
     ) {
       this.betHistory[0].status = BetStatus.Lose;
     }
-    if (this.gamesHistory.length > 8) {
-      this.gamesHistory.splice(-2);
-    }
   }
 
   getMyGames(): Observable<Game[]> {
