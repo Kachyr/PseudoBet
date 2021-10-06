@@ -7,5 +7,7 @@
   ></app-team-radio-switch>
   <app-money-input formControlName="amountMoney"></app-money-input>
   <app-coefficient [coefficient]="2"></app-coefficient>
-  <app-bet-button [isDisabled]="betForm.invalid"></app-bet-button>
+  <app-bet-button
+    [isDisabled]="betForm.invalid || isBetButtonDisabled"
+  ></app-bet-button>
 </form>

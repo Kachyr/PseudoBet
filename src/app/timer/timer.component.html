@@ -5,7 +5,8 @@
       {{ (timeData | async)!.left | timerFormat }}
     </div>
     <div *ngSwitchCase="statusEnum.waitingForNextGame">
-      This game will start at {{ (currentGame | async)?.startAt | date : 'shortTime' }}
+      This game will start at
+      {{ (currentGame | async)?.startAt | date: 'shortTime' }}
     </div>
     <div *ngSwitchCase="statusEnum.finishedGame">Game is Over</div>
     <div *ngSwitchDefault>No planned Games</div>

@@ -13,6 +13,7 @@ import {
   EVERY_MINUTE_WHEN_GAME_STARTS,
   GAME_DURATION_IN_MINUTES,
 } from '../constants';
+import { BetStatus } from '../shared/enums/bet-status.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,12 @@ export class DataRepository {
   /**
    * Last value of chart for chartData generation
    */
-  lastChartValue = 0;
+  private lastChartValue = 0;
+  private myDeposit = 300;
+
+  get repoLastChartValue(): number {
+    return this.lastChartValue;
+  }
 
   /**
    * Method will return array with data for chart,
@@ -60,6 +66,21 @@ export class DataRepository {
   addGame(game: Game): void {
     const parsedStartAt = game.startAt.toJSON();
     this.gamesHistory.unshift({ ...game, startAt: parsedStartAt });
+    if (
+      game.gameId === this.betHistory[0].matchId &&
+      game.winnerId === this.betHistory[0].favoriteId
+    ) {
+      this.betHistory[0].status = BetStatus.Win;
+      this.myDeposit += this.betHistory[0].amountMoney * 2;
+      console.log('myDepo', this.myDeposit);
+    }
+    if (
+      game.gameId === this.betHistory[0].matchId &&
+      game.winnerId !== this.betHistory[0].favoriteId
+    ) {
+      this.betHistory[0].status = BetStatus.Lose;
+    }
+    console.log('myDepo2', this.myDeposit);
   }
 
   getMyGames(): Observable<Game[]> {
@@ -80,12 +101,20 @@ export class DataRepository {
 
   setBet(betData: Bet): Observable<null> {
     this.betHistory.unshift(betData);
+    this.myDeposit -= betData.amountMoney;
     console.info('setBet with value', betData);
     return of(null).pipe(delay(500));
   }
 
   getBet(): Observable<Bet> {
     return of(this.betHistory[0]).pipe(delay(500));
+  }
+
+  /**
+   * @returns amount of user deposit
+   */
+  getDeposit(): Observable<number> {
+    return of(this.myDeposit).pipe(delay(500));
   }
 
   getCurrentGame(): Observable<Game> {
@@ -96,6 +125,7 @@ export class DataRepository {
       map((game) => {
         return {
           ...game,
+          gameId: this.gamesHistory.length + 1,
           duration: GAME_DURATION_IN_MINUTES * 60 * 1000,
           startAt: generateGameStartDateTime(),
         };
