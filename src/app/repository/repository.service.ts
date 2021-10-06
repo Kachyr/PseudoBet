@@ -72,7 +72,6 @@ export class DataRepository {
     ) {
       this.betHistory[0].status = BetStatus.Win;
       this.myDeposit += this.betHistory[0].amountMoney * 2;
-      console.log('myDepo', this.myDeposit);
     }
     if (
       game.gameId === this.betHistory[0].matchId &&
@@ -80,7 +79,9 @@ export class DataRepository {
     ) {
       this.betHistory[0].status = BetStatus.Lose;
     }
-    console.log('myDepo2', this.myDeposit);
+    if (this.gamesHistory.length > 8) {
+      this.gamesHistory.splice(-2);
+    }
   }
 
   getMyGames(): Observable<Game[]> {

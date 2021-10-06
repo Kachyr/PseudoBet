@@ -22,7 +22,6 @@ import {
   generateGameStartDateTime,
 } from '../repository/repository.service';
 import { GameStatus } from '../shared/enums/game-status.enum';
-import { GameChartData } from '../shared/models/chart.model';
 import { Game } from '../shared/models/game.model';
 import { TimerService } from './../shared/timer/timer.service';
 
